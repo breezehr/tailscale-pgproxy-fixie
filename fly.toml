@@ -9,6 +9,8 @@ primary_region = 'cdg'
 [build]
 
 [[services]]
+  auto_start_machines = true
+  auto_stop_machines = false
   protocol = "udp"
   internal_port = 41641
   processes = ["app"]
