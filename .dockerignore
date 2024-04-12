@@ -1,0 +1,5 @@
+# flyctl launch added from .gitignore
+**/cacert.pem
+**/etag.txt
+**/tailscale-state
+fly.toml
