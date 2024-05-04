@@ -72,8 +72,8 @@ func main() {
 		Logf: logger.Discard,
 	}
 
-	if os.Getenv("TAILSCALE_AUTHKEY") == "" {
-		log.Print("Note: you need to run this with TAILSCALE_AUTHKEY=... the first time, to join your tailnet of choice.")
+	if os.Getenv("TS_AUTHKEY") == "" {
+		log.Print("Note: you need to run this with TS_AUTHKEY=... the first time, to join your tailnet of choice.")
 	}
 
 	tsclient, err := ts.LocalClient()
@@ -271,6 +271,7 @@ func (p *pgProxy) serve(sessionID int64, c net.Conn) error {
 		User:     auth_data[0],
 		Password: auth_data[1],
 	}
+	log.Printf("Dialing upstream via Fixie SOCKS host %s", fixie_addr)
 
 	dialer, err := proxy.SOCKS5("tcp", fixie_addr, &auth, proxy.Direct)
 	if err != nil {

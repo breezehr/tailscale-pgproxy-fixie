@@ -22,5 +22,5 @@ RUN mkdir /app/tailscale-state
 RUN curl --etag-compare etag.txt --etag-save etag.txt --remote-name https://curl.se/ca/cacert.pem
 
 # Set up the entrypoint for the container
-ENTRYPOINT ["/bin/sh", "-c", "FIXIE_SOCKS_HOST=$FIXIE_SOCKS_HOST TAILSCALE_AUTHKEY=$TAILSCALE_AUTHKEY ./pgproxy --hostname $TAILSCALE_HOSTNAME --upstream-addr $DB_HOST --upstream-ca-file /app/cacert.pem --state-dir /app/tailscale-state"]
+ENTRYPOINT ["/bin/sh", "-c", "FIXIE_SOCKS_HOST=$FIXIE_SOCKS_HOST TS_AUTHKEY=$TS_AUTHKEY ./pgproxy --hostname $TS_HOSTNAME --upstream-addr $DB_HOST --upstream-ca-file /app/cacert.pem --state-dir /app/tailscale-state"]
 
